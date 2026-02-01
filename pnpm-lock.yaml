@@ -29,12 +29,13 @@ importers:
       nodemailer:
         specifier: ^7.0.13
         version: 7.0.13
-      nodemon:
-        specifier: ^3.1.11
-        version: 3.1.11
       pg:
         specifier: ^8.18.0
         version: 8.18.0
+    devDependencies:
+      nodemon:
+        specifier: ^3.1.11
+        version: 3.1.11
 
 packages:
 
