@@ -2,9 +2,9 @@
 // const db = require("../config/database");
 // const { generateToken } = require("../utils/jwt");
 // const { sendVerificationEmail, generateVerificationToken } = require("../services/email.service");
-import { bcrypt } from "bcrypt";
-import { pool as db } from "./src/config/database.js";
-import { generateToken } from "./src/utils/jwt.js";
+import bcrypt from "bcrypt";
+import { pool as db } from "../config/database.js";
+import { generateToken } from "../utils/jwt.js";
 
 export const register = async (req, res, next) => {
 	try {
