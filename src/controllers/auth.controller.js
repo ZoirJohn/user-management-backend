@@ -1,10 +1,7 @@
-// const bcrypt = require("bcrypt");
-// const db = require("../config/database");
-// const { generateToken } = require("../utils/jwt");
 import bcrypt from "bcrypt";
 import { pool as db } from "../config/database.js";
 import { generateToken } from "../utils/jwt.js";
-import { generateVerificationToken, sendVerificationEmail, verifyEmailConfig } from "../services/email.service.js";
+import { generateVerificationToken, sendVerificationEmail } from "../services/email.service.js";
 
 export const register = async (req, res, next) => {
 	try {
@@ -101,7 +98,6 @@ export const login = async (req, res, next) => {
 export const verifyEmail = async (req, res, next) => {
 	try {
 		const { token } = req.query;
-
 		if (!token) {
 			return res.status(400).json({
 				success: false,
@@ -173,10 +169,3 @@ export const getCurrentUser = async (req, res, next) => {
 		next(error);
 	}
 };
-
-// module.exports = {
-// 	register,
-// 	login,
-// 	verifyEmail,
-// 	getCurrentUser,
-// };

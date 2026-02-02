@@ -6,7 +6,7 @@ export const generateToken = (payload) => {
 
 export const verifyToken = (token) => {
 	try {
-		jwt.verify(token, process.env.JWT_SECRET);
+		return jwt.verify(token, process.env.JWT_SECRET);
 	} catch (error) {
 		return null;
 	}

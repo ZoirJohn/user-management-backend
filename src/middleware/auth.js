@@ -1,4 +1,5 @@
 import { verifyToken } from "../utils/jwt.js";
+import { pool as db } from "../config/database.js";
 
 export const authenticate = async (req, res, next) => {
 	try {
@@ -15,7 +16,7 @@ export const authenticate = async (req, res, next) => {
 		const token = authHeader.split(" ")[1];
 
 		const decoded = verifyToken(token);
-
+		
 		if (!decoded) {
 			return res.status(401).json({
 				success: false,
