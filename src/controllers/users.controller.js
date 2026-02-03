@@ -14,7 +14,7 @@ export const getAllUsers = async (req, res, next) => {
             FROM users
             ORDER BY last_login_time DESC NULLS LAST
         `);
-			console.log(result.rows);
+		console.log(result.rows);
 		res.json({
 			success: true,
 			data: {

@@ -1,13 +1,8 @@
-// const express = require("express");
-// const { body } = require("express-validator");
-// const { validate } = require("../middleware/validation");
-// const { authenticate } = require("../middleware/auth");
-// const { getAllUsers, blockUsers, unblockUsers, deleteUsers, deleteUnverifiedUsers, getUserStats } = require("../controllers/users.controller");
 import express from "express";
 import { body } from "express-validator";
 import { validate } from "../middleware/validation.js";
 import { authenticate } from "../middleware/auth.js";
-import { getAllUsers,getUserStats,blockUsers,unblockUsers,deleteUsers,deleteUnverifiedUsers } from "../controllers/users.controller.js";
+import { getAllUsers, getUserStats, blockUsers, unblockUsers, deleteUsers, deleteUnverifiedUsers } from "../controllers/users.controller.js";
 const router = express.Router();
 
 const userIdsValidation = [
