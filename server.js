@@ -21,9 +21,8 @@ const server = app.listen(PORT, () => {
 	console.log("================================================");
 	console.log("🚀 User Management System - Backend Server");
 	console.log("================================================");
-	console.log(`✅ Server running on: http://localhost:${PORT}`);
 	console.log(`✅ Environment: ${process.env.NODE_ENV || "development"}`);
-	console.log(`✅ API Base URL: http://localhost:${PORT}/api`);
+	
 	console.log("================================================");
 	console.log("\nAvailable Endpoints:");
 	console.log("  GET  /api/health");

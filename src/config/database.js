@@ -20,7 +20,7 @@ pool.connect((err, client, release) => {
 		console.error("❌ Error connecting to PostgreSQL:", err.stack);
 		console.error("\nPlease check:");
 		console.error("1. PostgreSQL is running");
-		console.error('2. Database "user_management" exists');
+		console.error(`2. Database "${process.env.DB_NAME}" exists`);
 		console.error("3. Credentials in .env are correct\n");
 		process.exit(1);
 	}
