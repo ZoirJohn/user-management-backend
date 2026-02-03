@@ -7,6 +7,7 @@ export const pool = new Pool({
 	password: process.env.DB_PASSWORD,
 	database: process.env.DB_NAME,
 
+	connectionString: process.env.DB_URL,
 	ssl: { rejectUnauthorized: false },
 
 	max: 20,
