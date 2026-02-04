@@ -3,26 +3,7 @@ import { app } from "./src/app.js";
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-	function listRoutes() {
-		const routes = [];
-		app._router.stack.forEach((middleware) => {
-			if (middleware.route) {
-				const methods = Object.keys(middleware.route.methods).join(", ").toUpperCase();
-				routes.push(`${methods} ${middleware.route.path}`);
-			} else if (middleware.name === "router") {
-				middleware.handle.stack.forEach((handler) => {
-					if (handler.route) {
-						const methods = Object.keys(handler.route.methods).join(", ").toUpperCase();
-						routes.push(`${methods} ${handler.route.path}`);
-					}
-				});
-			}
-		});
-		return routes;
-	}
-	console.log(listRoutes());
-});
+const server = app.listen(PORT, () => {});
 
 process.on("SIGTERM", () => {
 	console.log("\n⏳ SIGTERM received. Closing server gracefully...");
