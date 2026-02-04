@@ -18,12 +18,9 @@ verifyEmailConfig()
 	});
 
 const server = app.listen(PORT, () => {
-	console.log("================================================");
-	console.log("🚀 User Management System - Backend Server");
-	console.log("================================================");
+
 	console.log(`✅ Environment: ${process.env.NODE_ENV || "development"}`);
 	
-	console.log("================================================");
 	console.log("\nAvailable Endpoints:");
 	console.log("  GET  /api/health");
 	console.log("  POST /api/auth/register");
