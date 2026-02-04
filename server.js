@@ -1,26 +1,11 @@
 import "dotenv/config";
 import { app } from "./src/app.js";
-import { verifyEmailConfig } from "./src/services/email.service.js";
 
 const PORT = process.env.PORT || 5000;
 
-verifyEmailConfig()
-	.then((isConfigured) => {
-		if (isConfigured) {
-			console.log("📧 Email service is ready");
-		} else {
-			console.warn("⚠️  Email service not configured - emails will not be sent");
-			console.warn("   Update EMAIL_* variables in .env to enable emails");
-		}
-	})
-	.catch((err) => {
-		console.error("Email verification failed:", err.message);
-	});
-
 const server = app.listen(PORT, () => {
-
 	console.log(`✅ Environment: ${process.env.NODE_ENV || "development"}`);
-	
+
 	console.log("\nAvailable Endpoints:");
 	console.log("  GET  /api/health");
 	console.log("  POST /api/auth/register");

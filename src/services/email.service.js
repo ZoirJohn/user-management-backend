@@ -1,15 +1,7 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import crypto from "crypto";
 
-const transporter = nodemailer.createTransport({
-	host: process.env.EMAIL_HOST,
-	port: process.env.EMAIL_PORT,
-	secure: false,
-	auth: {
-		user: process.env.EMAIL_USER,
-		pass: process.env.EMAIL_PASSWORD,
-	},
-});
+const resend = new Resend("re_cKERFNEc_3UjioD3Cz8tFMKtv9rGJGts1");
 
 export const generateVerificationToken = () => {
 	return crypto.randomBytes(32).toString("hex");
@@ -19,7 +11,7 @@ export const sendVerificationEmail = async (email, name, token) => {
 	const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
 
 	const mailOptions = {
-		from: `"User Management System" <${process.env.EMAIL_FROM}>`,
+		from: "onboarding@resend.dev",
 		to: email,
 		subject: "Verify Your Email Address",
 		html: `
@@ -99,24 +91,12 @@ export const sendVerificationEmail = async (email, name, token) => {
 	};
 
 	try {
-		const info = await transporter.sendMail(mailOptions);
+		const info = await resend.emails.send(mailOptions);
 		console.log(`✅ Verification email sent to ${email}`);
-		console.log(`   Message ID: ${info.messageId}`);
+		console.log(`   Message ID: ${info.data.id}`);
 		return info;
 	} catch (error) {
 		console.error(`❌ Failed to send email to ${email}:`, error.message);
 		throw error;
-	}
-};
-
-export const verifyEmailConfig = async () => {
-	try {
-		await transporter.verify();
-		console.log("✅ Email service configured and ready");
-		return true;
-	} catch (error) {
-		console.error("❌ Email service configuration error:", error.message);
-		console.error("   Emails will not be sent. Please check your .env configuration.");
-		return false;
 	}
 };
