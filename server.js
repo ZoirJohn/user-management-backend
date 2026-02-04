@@ -4,20 +4,24 @@ import { app } from "./src/app.js";
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
-	console.log(`✅ Environment: ${process.env.NODE_ENV || "development"}`);
-
-	console.log("\nAvailable Endpoints:");
-	console.log("  GET  /api/health");
-	console.log("  POST /api/auth/register");
-	console.log("  POST /api/auth/login");
-	console.log("  GET  /api/auth/verify-email?token=xxx");
-	console.log("  GET  /api/auth/me");
-	console.log("  GET  /api/users");
-	console.log("  POST /api/users/block");
-	console.log("  POST /api/users/unblock");
-	console.log("  DELETE /api/users");
-	console.log("  DELETE /api/users/unverified");
-	console.log("================================================\n");
+	function listRoutes() {
+		const routes = [];
+		app._router.stack.forEach((middleware) => {
+			if (middleware.route) {
+				const methods = Object.keys(middleware.route.methods).join(", ").toUpperCase();
+				routes.push(`${methods} ${middleware.route.path}`);
+			} else if (middleware.name === "router") {
+				middleware.handle.stack.forEach((handler) => {
+					if (handler.route) {
+						const methods = Object.keys(handler.route.methods).join(", ").toUpperCase();
+						routes.push(`${methods} ${handler.route.path}`);
+					}
+				});
+			}
+		});
+		return routes;
+	}
+	console.log(listRoutes());
 });
 
 process.on("SIGTERM", () => {
