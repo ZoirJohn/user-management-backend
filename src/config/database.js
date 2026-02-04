@@ -17,10 +17,6 @@ export const pool = new Pool({
 pool.connect((err, client, release) => {
 	if (err) {
 		console.error("❌ Error connecting to PostgreSQL:", err.stack);
-		console.error("\nPlease check:");
-		console.error("1. PostgreSQL is running");
-		console.error(`2. Database "${process.env.DB_NAME}" exists`);
-		console.error("3. Credentials in .env are correct\n");
 		process.exit(1);
 	}
 

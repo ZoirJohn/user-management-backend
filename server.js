@@ -3,9 +3,7 @@ import { app } from "./src/app.js";
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => {
-	console.log("App is running on endpoint: ", process.env.FRONTEND_URL);
-});
+const server = app.listen(PORT, () => {});
 
 process.on("SIGTERM", () => {
 	console.log("\n⏳ SIGTERM received. Closing server gracefully...");
